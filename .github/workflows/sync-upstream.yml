@@ -1,0 +1,40 @@
+name: Sync Fork
+# 触发条件：在上游 Dooy/chatgpt-web-midjourney-proxy 仓库有 push 事件时触发
+on:
+  schedule:
+    - cron: "0 2 * * *" # 每天2:00 UTC触发一次
+  push:
+    branches:
+      - main
+      - release/*
+  workflow_dispatch:
+    branches: [main]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    # 检出上游仓库(Dooy/chatgpt-web-midjourney-proxy)
+    - name: Checkout Upstream
+      uses: actions/checkout@v4
+      with:
+        repository: Dooy/chatgpt-web-midjourney-proxy
+        path: upstream
+        ref: main # 或者指定希望同步的分支
+    # 检出你 fork 的仓库
+    - name: Checkout Fork
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ github.repository }}
+        path: fork
+        ref: main
+    # 同步上游更改到你 fork 的仓库
+    - name: Sync Upstream to Fork
+      run: |
+        cd fork
+        git pull ../upstream main
+        git push origin main
+    # 选项：如果你希望在同步后执行构建或测试操作，可以在这里添加步骤
+    # - name: Perform Post-Sync Actions
+    #   run: |
+    #     echo "Performing post-sync actions..."
+    #     # 在这里添加您的构建或测试命令
