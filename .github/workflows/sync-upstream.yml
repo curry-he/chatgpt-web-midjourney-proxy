@@ -21,7 +21,7 @@ jobs:
           labels: '🚨 Sync Fail'
       - name: Sync upstream changes
         id: sync
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+        uses: jamesives/github-action-sync-fork@v4
         with:
           upstream_sync_repo: Dooy/chatgpt-web-midjourney-proxy
           upstream_sync_branch: main
