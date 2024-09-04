@@ -216,7 +216,7 @@ export const subGPT= async (data:any, chat:Chat.Chat )=>{
    let d:any;
    let action= data.action;
    //chat.myid=  `${Date.now()}`;
-   if(  action=='gpt.dall-e-3' && data.data && data.data.model && data.data.model =='ideogram'){ //ideogram
+   if(  action=='gpt.dall-e-3' && data.data && data.data.model && data.data.model.indexOf('ideogram')>-1 ){ //ideogram
          mlog("ddlog 数据 ", data.data  )
          try{
             let d= await ideoSubmit(data.data );
@@ -258,6 +258,7 @@ export const subGPT= async (data:any, chat:Chat.Chat )=>{
 export const isDallImageModel =(model:string|undefined)=>{
     if(!model) return false;
     if( model.indexOf('flux')>-1 ) return true; 
+    if( model.indexOf('ideogram')>-1 ) return true; 
     return ['dall-e-2' ,'dall-e-3','ideogram' ].indexOf(model)>-1
       
 }
