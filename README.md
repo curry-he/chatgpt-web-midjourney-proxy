@@ -151,9 +151,13 @@ docker run -d --name mj6013  -p 6013:8080  \
 ![base_url](./docs/gptbase.jpg)
 
 ### Realtime 
+
+[点击观看Realtime视频](https://www.youtube.com/watch?v=pKvVi3oBRQU) 
+
 <div style="display: flex; flex-wrap: wrap">
- <img src="./docs/realtime-2.jpg" style="width:200px" >
+ <img src="./docs/realtime-2.jpg" style="width:200px" > 
 </div>
+ 
 
 ### GPTS  GTP Store 
 ![多模态](./docs/gpts.jpg)
